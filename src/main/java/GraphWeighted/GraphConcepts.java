@@ -3,7 +3,6 @@ package GraphWeighted;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
@@ -46,6 +45,7 @@ class Node {
             this.edges.add(new Edge(this, destination, weight));
         }
     }
+
     public boolean isVisited(){
         return  visited;
     }
@@ -98,7 +98,7 @@ class Graph {
         }
     }
 
-    public void dijkstraShortestPath(Node source, Node destination) {
+    public void dijkstraShortestPath(Node source, Node destination,boolean usePrtiorityQueue) {
         HashMap<Node, Node> previousVertex = new HashMap<>();
         HashMap<Node, Double> shortestPathFromSource = new HashMap<>();
         previousVertex.put(source, null);
@@ -114,15 +114,23 @@ class Graph {
             shortestPathFromSource.put(edge.destination, edge.weight);
             previousVertex.put(edge.destination, source);
         }
+
         source.visit();
         while (true) {
-            Node currentNode = closestUnvisited(shortestPathFromSource);
+            Node currentNode;
+            if(!usePrtiorityQueue) {
+                 currentNode = closestUnvisitedFromSource(shortestPathFromSource);
+            }else{
+                currentNode = closestUnvisitedFromSourceUsingQueue(shortestPathFromSource);
+            }
+
             if (currentNode == null) {
                 System.out.println("There isn't a path between " + source.name + " and " + destination.name);
                 return;
             }
+
             if (currentNode == destination) {
-                System.out.print("Shortest Path from " + source + " to " + destination + "is :");
+                System.out.print("Shortest Path from " + source.name + " to " + destination.name + " is : ");
                 Node child = destination;
                 String path = destination.name;
                 while (true) {
@@ -134,6 +142,9 @@ class Graph {
                     path = parent.name + " -> " + path;
                     child = parent;
                 }
+                System.out.println(path);
+                System.out.println("The path costs: " + shortestPathFromSource.get(destination));
+                return;
             }
 
             currentNode.visit();
@@ -151,7 +162,7 @@ class Graph {
         }
     }
 
-    private Node closestUnvisited(HashMap<Node, Double> shortesPathFromSource) {
+    private Node closestUnvisitedFromSource(HashMap<Node, Double> shortesPathFromSource) {
         double shortestDistance = Double.POSITIVE_INFINITY;
         Node closestVisited = null;
         for (Node node : nodes) {
@@ -165,6 +176,9 @@ class Graph {
             }
         }
         return closestVisited;
+    }
+    private Node closestUnvisitedFromSourceUsingQueue(HashMap<Node, Double> shortesPathFromSource) {
+        return  nodes.stream().filter(n->!n.visited).findFirst().get();
     }
 }
 public class GraphConcepts {
@@ -191,5 +205,7 @@ public class GraphConcepts {
         graph.addEdge(five, four, 1.0);
         graph.addEdge(five, six, 8.0);
         graph.printEdges();
+        graph.dijkstraShortestPath(zero, six,false);
+        //graph.dijkstraShortestPath(zero, six,true);
     }
 }

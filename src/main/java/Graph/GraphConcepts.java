@@ -140,6 +140,7 @@ class Graph {
             System.out.print(" " + nodeStack.pop().name());
         }
     }
+
     public void breadthFirstSearch(Node node) {
         if (node == null || node.visited){
             return;
@@ -175,9 +176,6 @@ class Graph {
             }
         }
     }
-
-
-
 
 }
 public class GraphConcepts {
