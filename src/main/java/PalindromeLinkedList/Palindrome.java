@@ -1,5 +1,10 @@
 package PalindromeLinkedList;
 
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+
 class ListNode {
     int val;
     ListNode next;
@@ -20,10 +25,12 @@ class Solution {
             return false;
         }
 
+        ArrayList<Integer> characters = new ArrayList<>();
         String str = new String();
         while (head.next != null) {
             str += head.val;
             head = head.next;
+            characters.add(head.val);
         }
         if (head != null) {
             str += head.val;
@@ -35,6 +42,7 @@ class Solution {
     private String reverseString(String input) {
         if (input == null) return input;
         char[] inputChar = input.toCharArray();
+        HashMap<Character,Integer> charMap = new HashMap<>();
         String returnStr = new String();
         for (int i = inputChar.length - 1; i >= 0; i--) {
             returnStr += inputChar[i];
@@ -43,6 +51,19 @@ class Solution {
         return returnStr;
     }
 
+    private boolean isPalindrome(ArrayList<Integer> input) {
+        if (input == null) return false;
+        int i = 0;
+        int j = input.size() - 1;
+        while (i < j) {
+            if (input.get(i) != input.get(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
     private boolean isPalindrome(String input) {
         if (input == null) return false;
         int i = 0;
@@ -56,6 +77,23 @@ class Solution {
         }
         return true;
     }
+
+    public boolean checkPalindrome(ListNode head){
+        Deque<Integer> queue = new LinkedList<Integer>();
+        while(head != null){
+            queue.addFirst(head.val);
+            head = head.next;
+        }
+        while(queue.size() != 0){
+            if(queue.size() == 1){
+                return true;
+            }
+            if(queue.removeFirst()!= queue.removeLast()){
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 public class Palindrome {
@@ -65,6 +103,7 @@ public class Palindrome {
         ListNode listNode = new ListNode(1,new ListNode(2,new ListNode(1)));
         Solution solution = new Solution();
         System.out.println(solution.isPalindrome(listNode));
+        System.out.println(solution.checkPalindrome(listNode));
     }
 }
 
