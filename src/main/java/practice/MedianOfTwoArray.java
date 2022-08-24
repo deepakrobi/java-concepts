@@ -11,7 +11,7 @@ public class MedianOfTwoArray {
         }
         int counter = nums1.length;
 
-        for (int i = 0; i < nums2.length; i++) {
+        for (int i = 0;  i < nums2.length; i++) {
             mergedList[counter] = nums2[i];
             counter++;
         }

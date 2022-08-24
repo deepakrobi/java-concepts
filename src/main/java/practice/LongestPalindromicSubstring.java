@@ -2,7 +2,6 @@ package practice;
 
 import com.google.common.base.Stopwatch;
 
-import java.util.Arrays;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -68,7 +67,7 @@ public class LongestPalindromicSubstring {
                 }
                i++;
             }
-        result = temp.length()> result.length()? temp: result;
+        result = temp.length() > result.length() ? temp : result;
         return result;
     }
 
