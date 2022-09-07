@@ -140,9 +140,9 @@ class Graph {
                 break;
             }
 
-            for(Node node : currentNode.adjacentNodes){
-                if(!node.visited){
-                    previousVertex.put(node,currentNode);
+            for(Node node : currentNode.adjacentNodes) {
+                if (!node.visited) {
+                    previousVertex.put(node, currentNode);
                     queue.add(node);
                 }
             }

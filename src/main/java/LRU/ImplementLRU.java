@@ -60,8 +60,6 @@ import java.util.HashMap;
             DoubleNode cachedDoubleNode = map.get(key);
             if (cachedDoubleNode == null) {
                 DoubleNode newNodesToBeCached = new DoubleNode(key, value);
-                map.put(key, newNodesToBeCached);
-                addToHead(newNodesToBeCached);
                 if (count < capacity) {
                     count++;
                 } else {
@@ -70,6 +68,8 @@ import java.util.HashMap;
                     map.remove(tail.pre.key);
                     deleteNode(tail.pre);
                 }
+                map.put(key, newNodesToBeCached);
+                addToHead(newNodesToBeCached);
             } else {
                 cachedDoubleNode.value = value;
                 markNodeMostRecentlyUsed(cachedDoubleNode);

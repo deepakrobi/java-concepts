@@ -64,6 +64,7 @@ class Solution {
         }
         return true;
     }
+
     private boolean isPalindrome(String input) {
         if (input == null) return false;
         int i = 0;
@@ -78,17 +79,17 @@ class Solution {
         return true;
     }
 
-    public boolean checkPalindrome(ListNode head){
+    public boolean checkPalindrome(ListNode head) {
         Deque<Integer> queue = new LinkedList<Integer>();
-        while(head != null){
+        while (head != null) {
             queue.addFirst(head.val);
             head = head.next;
         }
-        while(queue.size() != 0){
-            if(queue.size() == 1){
+        while (queue.size() != 0) {
+            if (queue.size() == 1) {
                 return true;
             }
-            if(queue.removeFirst()!= queue.removeLast()){
+            if (queue.removeFirst() != queue.removeLast()) {
                 return false;
             }
         }

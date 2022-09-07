@@ -127,7 +127,7 @@ public class PatternMatching {
                     // first row is false except first cell.
                     dp[row][column] = false;
                 } else if (column == 0) {
-                    // first column is zero except * .If * then lok 2 rows above.
+                    // first column is false except * .If * then look 2 rows above.
                     char pc = pattern.charAt(row - 1);
                     if (pc == STAR) {
                         dp[row][column] = dp[row - 2][column];
