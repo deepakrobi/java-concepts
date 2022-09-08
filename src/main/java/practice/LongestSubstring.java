@@ -28,23 +28,23 @@ import java.util.HashMap;
  * s consists of English letters, digits, symbols and spaces.
  */
 public class LongestSubstring {
-    public int longestLengthAcquireRelease(String str){
+    public int longestLengthAcquireRelease(String str) {
         int result = 0;
         int acquire=-1;
         int release = -1;
 
         HashMap<Character, Integer> map = new HashMap<>();
-        while(true){
-            boolean acquireLoop= false;
+        while (true) {
+            boolean acquireLoop = false;
             boolean releaseLoop = false;
 
             //acquire until invalid
-            while(acquire < str.length()-1){
-                acquire ++;
-                acquireLoop= true;
+            while (acquire < str.length() - 1) {
+                acquire++;
+                acquireLoop = true;
                 char ch = str.charAt(acquire);
-                map.put(ch,map.getOrDefault(ch,0)+1);
-                if(map.get(ch) ==2) {
+                map.put(ch, map.getOrDefault(ch, 0) + 1);
+                if (map.get(ch) == 2) {
                     break;
                 } else {
                     int length = acquire - release;
@@ -53,17 +53,17 @@ public class LongestSubstring {
             }
 
             //release until valid
-            while (release < acquire){
+            while (release < acquire) {
                 releaseLoop = true;
-                release ++;
+                release++;
                 char ch = str.charAt(release);
-                map.put(ch,map.get(ch)-1);
-                if(map.get(ch) == 1){
+                map.put(ch, map.get(ch) - 1);
+                if (map.get(ch) == 1) {
                     break;
                 }
             }
 
-            if(!acquireLoop && !releaseLoop){
+            if (!acquireLoop && !releaseLoop) {
                 break;
             }
         }

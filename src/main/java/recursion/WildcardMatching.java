@@ -90,27 +90,27 @@ public class WildcardMatching {
          return   isMatchMemorization(str,pattern,0,0,dp);
     }
 
-    public boolean isMatchMemorization(String str, String pattern, int i, int j, Boolean[][] dp) {
+    public boolean isMatchMemorization(String str, String pattern, int patternIndex, int strIndex, Boolean[][] dp) {
         boolean answer = false;
-        if (dp[i][j] != null) {
-            return dp[i][j];
+        if (dp[patternIndex][strIndex] != null) {
+            return dp[patternIndex][strIndex];
         }
-        if (i == pattern.length()) {
-            answer = j == str.length();
+        if (patternIndex == pattern.length()) {
+            answer = strIndex == str.length();
         } else if (pattern.equals("*") || pattern.equals(str)) {
             answer = true;
         } else {
-            boolean firstCharMatch = (j < str.length() && (pattern.charAt(i) == '?' || pattern.charAt(i) == '*' || pattern.charAt(i) == str.charAt(j)));
-            if (pattern.charAt(i) == '*') {
-                answer = isMatchMemorization(str, pattern, i + 1, j, dp);
+            boolean firstCharMatch = (strIndex < str.length() && (pattern.charAt(patternIndex) == '?' || pattern.charAt(patternIndex) == '*' || pattern.charAt(patternIndex) == str.charAt(strIndex)));
+            if (pattern.charAt(patternIndex) == '*') {
+                answer = isMatchMemorization(str, pattern, patternIndex + 1, strIndex, dp);
                 if (!answer) {
-                    answer = answer || firstCharMatch && isMatchMemorization(str, pattern, i, j + 1, dp);
+                    answer = answer || firstCharMatch && isMatchMemorization(str, pattern, patternIndex, strIndex + 1, dp);
                 }
             } else {
-                answer = firstCharMatch && isMatchMemorization(str, pattern, i + 1, j + 1, dp);
+                answer = firstCharMatch && isMatchMemorization(str, pattern, patternIndex + 1, strIndex + 1, dp);
             }
         }
-        dp[i][j] = answer;
+        dp[patternIndex][strIndex] = answer;
         return answer;
     }
 
