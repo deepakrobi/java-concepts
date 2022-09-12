@@ -101,6 +101,23 @@ public class MaximumScore {
             return dp(0, 0);
         }
 
+        public int maximumScoreBottomUp(int[] nums, int[] multipliers) {
+            int n = nums.length;
+            int m = multipliers.length;
+            int[][] results = new int[m + 1][m + 1];
+            for (int i = m - 1; i >= 0; i--) {
+                for (int left = i; left >= 0; left--) {
+                    int multiplier = multipliers[i];
+                    int right = n - 1 - (i - left);
+                    results[i][left] = Math.max(multiplier * nums[left] + results[i + 1][left + 1],
+                            multiplier * nums[right] + results[i + 1][left]
+                    );
+                }
+            }
+
+            return results[0][0];
+        }
+
     public static  void main (String [] args) {
         MaximumScore score = new MaximumScore();
        int []  nums = {1,2,3}, multipliers = {3,2,1};

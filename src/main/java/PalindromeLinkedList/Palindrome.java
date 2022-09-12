@@ -25,12 +25,10 @@ class Solution {
             return false;
         }
 
-        ArrayList<Integer> characters = new ArrayList<>();
         String str = new String();
         while (head.next != null) {
             str += head.val;
             head = head.next;
-            characters.add(head.val);
         }
         if (head != null) {
             str += head.val;

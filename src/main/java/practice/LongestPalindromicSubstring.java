@@ -54,6 +54,7 @@ public class LongestPalindromicSubstring {
         if(strSet.size() <1 ){
             return str;
         }
+
         if(isPalindrome(str)){
             return str;
         }
