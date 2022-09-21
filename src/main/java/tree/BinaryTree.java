@@ -81,7 +81,7 @@ public class BinaryTree {
             System.out.print(" ");
         }
         System.out.print(root.value);
-        printNodes(root);
+        //printNodes(root);
 
 }
 

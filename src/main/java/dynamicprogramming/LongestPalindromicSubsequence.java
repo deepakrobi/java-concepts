@@ -35,10 +35,10 @@ public class LongestPalindromicSubsequence {
     }
 
     public int longestPalindromeSubseq(char[] sequence, int i, int j) {
-        // Base Case 1: If there is only 1 character
         if (cache[i][j] != null) {
             return cache[i][j];
         }
+        // Base Case 1: If there is only 1 character
         if (i == j) {
             return cache[i][j] = 1;
         }
