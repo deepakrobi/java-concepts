@@ -3,6 +3,8 @@ package towpointers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 /**
  * Problem Statement
  *
@@ -41,26 +43,27 @@ public class TripletSumCloseToTarget {
         if (arr == null || arr.length < 3) {
             return output;
         }
-    int smallestDiff = Integer.MAX_VALUE;
-        for(int i =0; i<arr.length-2;i++){
-            smallestDiff = searchClosesetDiff(arr,arr[i],targetSum,i+1,smallestDiff);
-            if(smallestDiff ==0){
+        Arrays.sort(arr);
+        int smallestDiff = Integer.MAX_VALUE;
+        for (int i = 0; i < arr.length - 2; i++) {
+            smallestDiff = searchClosesetDiff(arr, arr[i], targetSum, i + 1, smallestDiff);
+            if (smallestDiff == 0) {
                 // there is no need to search anymore as we have found the exact match with target Sum
                 break;
             }
         }
-
         return targetSum - smallestDiff;
     }
 
     private static int searchClosesetDiff(int[] arr,int currentNumber, int targetSum, int left, int smallestDiff) {
         int right = arr.length - 1;
         while (left < right) {
-            int targetDiff = targetSum - currentNumber - arr[left] - arr[right];
+            int targetDiff = targetSum - (currentNumber + arr[left] + arr[right]);
             if (targetDiff == 0) {
-                // we hae found the exact match, so return the diff
+                // we have found the exact match, so return the diff
                 return targetDiff;
             }
+
             if (Math.abs(targetDiff) < Math.abs(smallestDiff)
                     || (Math.abs(targetDiff) == Math.abs(smallestDiff) && targetDiff > smallestDiff)) {
                 smallestDiff = targetDiff;
@@ -92,5 +95,20 @@ public class TripletSumCloseToTarget {
     @Test
     void test4(){
         Assertions.assertEquals(4,TripletSumCloseToTarget.searchTriplet(new int[]{0, 0, 1, 1, 2, 6}, 5));
+    }
+
+    @Test
+    void test5(){
+        Assertions.assertEquals(0,TripletSumCloseToTarget.searchTriplet(new int[]{0,0,0}, 1));
+    }
+
+    @Test
+    void test6(){
+        Assertions.assertEquals(2, TripletSumCloseToTarget.searchTriplet(new int[]{-1, 2, 1, -4}, 1));
+    }
+
+    @Test
+    void test7(){
+        Assertions.assertEquals(3, TripletSumCloseToTarget.searchTriplet(new int[]{0,1,2}, 3));
     }
 }

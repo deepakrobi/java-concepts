@@ -43,7 +43,7 @@ public class NbrOfClosedIslands {
 
     private static boolean dfs(int[] [] matrix, int row, int col) {
         if (row < 0 || row >= matrix.length || col < 0 || col >= matrix[0].length) {
-            return false; // return if it is not valid cell.
+            return false; // can not be a valid closed island as it is touching an outside edge.
         }
         if (matrix[row][col] == 0) {
             return true;// if water or visited return;

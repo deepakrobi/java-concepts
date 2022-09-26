@@ -1,4 +1,4 @@
-package TopologicalSort;
+package slidingwindow.TopologicalSort;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -42,8 +42,8 @@ public class NumberOfIslands {
         int col = matrix[0].length;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < col; j++) {
-                if (matrix[i][j] == 1) {
-                    // we found an island
+                if (matrix[i][j] == 1) { // only if the cell is valid land
+                    // we have found an island
                     answer++;
                     dfs(matrix, i, j);
                 }
@@ -58,8 +58,8 @@ public class NumberOfIslands {
         int col = matrix[0].length;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < col; j++) {
-                if (matrix[i][j] == 1) {
-                    // we found an island
+                if (matrix[i][j] == 1) { // only if the cell is valid land
+                    // we have found an island
                     answer++;
                     bfs(matrix, i, j);
                 }
@@ -96,7 +96,7 @@ public class NumberOfIslands {
                 continue;// continue if it is not a valid cell
             }
             if (matrix[row][col] == 0) {
-                continue; // conmitnue if it is water or already visited
+                continue; // continue if it is water or already visited
             }
             matrix[row][col] = 0; // visit the cell
             neighbors.add(new int[]{row - 1, col}); // upper cell

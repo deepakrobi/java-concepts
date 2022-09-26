@@ -41,6 +41,7 @@ public class TopologicalSort {
                 sources.add(entry.getKey());
             }
         }
+
         // Step 4: topological sort: For each source, add it to the sortedOrder and subtract one from all of its
         // children's in-degrees. If a child's in-degree becomes zero, add it to sources queue
         while (!sources.isEmpty()) {

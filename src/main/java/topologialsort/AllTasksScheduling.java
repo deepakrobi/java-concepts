@@ -34,9 +34,9 @@ public class AllTasksScheduling {
             graph.getOrDefault(parent, new ArrayList<>()).add(child);
             inDegree.put(child, inDegree.getOrDefault(child, 0) + 1);
         }
-        Queue<Integer> sources = new LinkedList<>();
 
         //Step 3: find all sources i.e., all vertices or tasks with 0 in-degree.
+        Queue<Integer> sources = new LinkedList<>();
         for (Map.Entry<Integer, Integer> entry : inDegree.entrySet()) {
             if(entry.getValue() ==0){
                 sources.add(entry.getKey());
@@ -44,19 +44,18 @@ public class AllTasksScheduling {
         }
 
         // Step 4: topological sort: find all possible sort paths.
-
         List<Integer> sortedOrder = new ArrayList<>();
-         getAllTopologicalSortOrders(graph,inDegree,sources,sortedOrder, orders);
+        populateAllTopologicalSortOrders(graph,inDegree,sources,sortedOrder, orders);
 
         return orders;
     }
 
-    private static void getAllTopologicalSortOrders(Map<Integer, List<Integer>> graph, Map<Integer, Integer> inDegree,
-                                                    Queue<Integer> sources, List<Integer> sortedOrder, List<List<Integer>> orders) {
+    private static void populateAllTopologicalSortOrders(Map<Integer, List<Integer>> graph, Map<Integer, Integer> inDegree,
+                                                         Queue<Integer> sources, List<Integer> sortedOrder, List<List<Integer>> orders) {
         if (!sources.isEmpty()) {
             for (Integer task : sources) {
                 sortedOrder.add(task);
-                Queue<Integer> sourcesForNextCall = cloneQueue(sources);
+                Queue<Integer> sourcesForNextCall = new LinkedList<>(sources);//cloneQueue(sources);
                  sourcesForNextCall.remove(task);
                 List<Integer> children = graph.get(task);
                 children.forEach(child -> {
@@ -66,14 +65,13 @@ public class AllTasksScheduling {
                     }
                 });
 
-                getAllTopologicalSortOrders(graph, inDegree, sourcesForNextCall, sortedOrder,orders);
+                populateAllTopologicalSortOrders(graph, inDegree, sourcesForNextCall, sortedOrder,orders);
 
                 // backtrack, remove the vertex from the sorted order and pull all its children back to be considered
                 sortedOrder.remove(task);
                 children.forEach(child -> {
                     inDegree.put(child, inDegree.get(child) + 1);
                 });
-
             }
         }
         if (sortedOrder.size() == inDegree.size()) {
