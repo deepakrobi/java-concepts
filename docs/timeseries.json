@@ -1,0 +1,34 @@
+{
+  "violations": [
+    {
+      "date": "2023-1-01",
+      "Open": 10000,
+      "Remidated": 0
+    },
+    {
+      "date": "2020-1-02",
+      "Open": 9000,
+      "Remidated": 1000
+    },
+    {
+      "date": "2020-1-03",
+      "Open": 8000,
+      "Remidated": 3000
+    },
+    {
+      "date": "2020-1-04",
+      "Open": 7000,
+      "Remidated": 4000
+    },
+    {
+      "date": "2020-1-05",
+      "Open": 6000,
+      "Remidated": 5000
+    },
+    {
+      "date": "2020-1-06",
+      "Open":5000,
+      "Remidated": 4000
+    }
+  ]
+}
