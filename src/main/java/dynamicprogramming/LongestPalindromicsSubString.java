@@ -45,7 +45,7 @@ public class LongestPalindromicsSubString {
 
         // Base case 2: if there are 2 character, and they are equals.
         if (i + 1 == j && substring[i] == substring[j]) {
-            return cache [i][j] = new String(substring, i, j - i + 1);
+            return cache [i][j] = new String(substring, i, 2);
         }
 
         // if first and last character matches
@@ -84,6 +84,10 @@ public class LongestPalindromicsSubString {
     @Test
     void testFailed(){
         Assertions.assertEquals("aca",longestPalindrome("aacabdkacaa"));
+    }
+    @Test
+    void test2(){
+        Assertions.assertEquals("bdb",longestPalindrome("abdbca"));
     }
 
     @Test

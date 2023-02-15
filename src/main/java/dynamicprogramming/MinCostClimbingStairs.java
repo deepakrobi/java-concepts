@@ -48,7 +48,7 @@ public class MinCostClimbingStairs {
         }
 
         if (!cache.containsKey(currentStairs)) {
-            int costToClimbOneStep = cost[currentStairs-1]+ minCostClimbingStairsRecursive(cost, currentStairs - 1);
+            int costToClimbOneStep = cost[currentStairs - 1] + minCostClimbingStairsRecursive(cost, currentStairs - 1);
             int costToClimbTwoStep = cost[currentStairs-2]+ minCostClimbingStairsRecursive(cost, currentStairs - 2);
             cache.put(currentStairs, Math.min(costToClimbOneStep, costToClimbTwoStep));
         }

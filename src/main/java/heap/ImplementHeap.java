@@ -6,17 +6,20 @@ import java.util.PriorityQueue;
 public class ImplementHeap {
 
     public static void maxHeap(int[] nums, int k) {
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(nums.length, new NumComparator());
+        Comparator<Integer> comparator = Comparator.comparingInt(num->num.intValue());
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(nums.length,comparator.reversed());
+
         for (int i = 0; i < nums.length; i++) {
             maxHeap.add(nums[i]);
         }
+
 
         System.out.println(" Max Heap: ");
         while (!maxHeap.isEmpty()) {
             System.out.print(" " + maxHeap.poll() + "");
         }
 
-        PriorityQueue<Integer> kmaxHeap = new PriorityQueue<>(nums.length, new NumComparator());
+        PriorityQueue<Integer> kmaxHeap = new PriorityQueue<>(nums.length, comparator.reversed());
 
         for (int i = 0; i < k; i++) {
             kmaxHeap.add(nums[i]);

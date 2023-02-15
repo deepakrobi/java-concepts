@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
  */
 public class LongestPalindromicSubsequence {
     Integer [][] cache;
+
     public int longestPalindromeSubseq(String s) {
         if(s.isEmpty()){
             return 0;
@@ -67,6 +68,6 @@ public class LongestPalindromicSubsequence {
 
     @Test
     void testfailed() {
-        Assertions.assertEquals(3,new LongestPalindromicSubsequence().longestPalindromeSubseq("bbb"));
+        Assertions.assertEquals(3,new LongestPalindromicSubsequence().longestPalindromeSubseq("cddpd"));
     }
 }

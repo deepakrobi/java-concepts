@@ -3,6 +3,7 @@ package heap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -34,6 +35,8 @@ public class kthSmallestNumber {
 
     public static int findKthSmallestNumber(int[] nums, int k) {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>((n1, n2) -> n2 - n1);
+       // PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(Comparator.comparingInt(a->a.intValue()));
+
         // put first k numbers in the max heap
         for (int i = 0; i < k; i++)
             maxHeap.add(nums[i]);

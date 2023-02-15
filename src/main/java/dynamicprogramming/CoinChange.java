@@ -53,7 +53,7 @@ public class CoinChange {
 
     @Test
     void test1() {
-        int [] coins = {1,2,5};
+        int [] coins = {1,5};
         Assertions.assertEquals(3,new CoinChange().coinChange(coins,11));
     }
 

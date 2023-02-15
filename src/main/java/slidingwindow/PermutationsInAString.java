@@ -48,7 +48,7 @@ public class PermutationsInAString {
         int windowStart = 0, matched = 0;
         Map<Character, Integer> map = new HashMap<>();
         for (char ch : pattern.toCharArray()) {
-            map.put(ch, map.getOrDefault(ch, 1));
+            map.put(ch, map.getOrDefault(ch, 0)+1);
         }
 
         // our goal is to matched all the characters from the 'map' with the

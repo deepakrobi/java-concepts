@@ -57,7 +57,7 @@ public class IslandPerimeter {
         }
 
         if(visited[row][col]){
-            return 0; // we have already visited it, no need to cunt the edge again;
+            return 0; // we have already visited it, no need to count the edge again;
         }
 
         if (matrix[row][col] == 0) {

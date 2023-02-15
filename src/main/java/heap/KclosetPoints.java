@@ -1,6 +1,7 @@
 package heap;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -14,8 +15,8 @@ import java.util.PriorityQueue;
  * Explanation: The Euclidean distance between (1, 2) and the origin is sqrt(5).
  * The Euclidean distance between (1, 3) and the origin is sqrt(10).
  * Since sqrt(5) < sqrt(10), therefore (1, 2) is closer to the origin.
- * Example 2:
  *
+ * Example 2:
  * Input: point = [[1, 3], [3, 4], [2, -1]], K = 2
  * Output: [[1, 3], [2, -1]]
  */
@@ -29,15 +30,15 @@ class Point {
         this.y = y;
     }
 
-    public int distFromOrigin() {
-        return ((x * x) + (y * y));
+    public double distFromOrigin() {
+        return Math.sqrt((x * x) + (y * y));
     }
 }
 
 public class KclosetPoints {
     public static List<Point> findClosestPoints(Point[] points, int k) {
 
-        PriorityQueue<Point> maxHeap = new PriorityQueue<Point>(points.length, (p1, p2) -> p2.distFromOrigin() - p1.distFromOrigin());
+        PriorityQueue<Point> maxHeap = new PriorityQueue<Point>(points.length, Comparator.comparingDouble(a-> a.distFromOrigin()));
 
         // put first 'k' points in the max heap
         for (int i = 0; i < k; i++) {
